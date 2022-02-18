@@ -12,7 +12,7 @@
 	if ((nx != 1) || (ny != 1)) {
 		x <- raster(w, xmn=0, xmx=nx*rs[1], ymn=0, ymx=ny*rs[2], crs="+proj=utm +zone=1 +datum=WGS84")
 		d <- as.matrix(distance(x)) <= d
-		w <- d / sum(d)
+		w <- d #/ sum(d)
 	}
 	if (fillNA) {
 		w[w <= 0] <- NA 
@@ -40,7 +40,7 @@
 	m <- 1/(2*pi*sigma^2) * exp(-(p[,1]+p[,2])/(2*sigma^2))
 	m <- matrix(m, ncol=nx, nrow=ny, byrow=TRUE)
 # sum of weights should add up to 1	
-	m / sum(m)
+	m #/ sum(m)
 }
 
 
@@ -49,7 +49,7 @@
 	nx <- 1 + 2 * floor(d[1]/rs[1])
 	ny <- 1 + 2 * floor(d[2]/rs[2])
 	m <- matrix(1, ncol=nx, nrow=ny)
-	m / sum(m)
+	m #/ sum(m)
 }
 
 
@@ -90,6 +90,6 @@ focalWeight <- function(x, d, type=c('circle', 'Gauss', 'rectangle'), fillNA=FAL
 # according to http://en.wikipedia.org/wiki/Gaussian_filter
 	m[cbind(row, col)] <- 1/(2*pi*sigma^2) * exp(-(x^2+y^2)/(2*sigma^2))
 # sum of weights should add up to 1	
-	m / sum(m)
+	m #/ sum(m)
 }
 
