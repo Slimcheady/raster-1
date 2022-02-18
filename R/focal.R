@@ -39,7 +39,7 @@
 	} else if (length(w) == 2) {
 		w <- round(w)
 		w <- matrix(1, ncol=w[1], nrow=w[2])
-		w <- w / sum(w)
+		#w <- w / sum(w)
 		.wwarn()
 	} 
 	if (! is.matrix(w) ) {
